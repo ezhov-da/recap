@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>reCAPTCHA demo: Explicit render after an onload callback</title>
+    <script type="text/javascript">
+        var counter = 0
+        function callbackFun(response){
+            document.getElementById('callback').innerHTML = "Callback success: " + response
+        }
+
+        function countTrying(){
+            counter++
+
+            document.getElementById('counter').innerHTML = counter
+
+            if (counter === 3){
+                grecaptcha.render(
+                    'html_element',
+                    {
+                        'sitekey' : '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+                        'callback' : callbackFun
+
+                    }
+                );
+                document.getElementById('html_element').style.visibility = "visible";
+            } else if ((counter % 3) === 0 && counter !==3){
+                grecaptcha.reset()
+                document.getElementById('html_element').style.visibility = "visible";
+            } else {
+                document.getElementById('html_element').style.visibility = "hidden";
+            }
+      }
+
+    </script>
+</head>
+<body>
+<form action="?" method="POST">
+    <div id="html_element"></div>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<div id="counter" title="counter">counter</div>
+<input type="button" onclick="countTrying();" value="Counter">
+
+<div id="callback"></div>
+
+<script src="https://www.google.com/recaptcha/api.js?render=explicit&callback=callback"
+        async defer>
+</script>
+</body>
+</html>
