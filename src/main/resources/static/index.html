@@ -1,0 +1,28 @@
+<html lang="ru">
+<meta charset="UTF-8">
+<head>
+    <title>reCAPTCHA demo: Explicit render after an onload callback</title>
+</head>
+<body>
+<div>
+    <a href="/rec2-checkbox.html">reCAPTCHA v2 Checkbox</a>
+    <p>
+    <ul>
+        <li>Отражается кнопка применить и счётчик попыток.</li>
+        <li>При нажатии 3 раза на счётчик (Counter) показывается капча.</li>
+        <li>Если её пройдешь, то отразится ответ капчи ниже.</li>
+        <li>Если продолжить нажимать, то капча скроется и при количестве кратно 3 снова отразиться сброшенная.</li>
+        <li>И при её прохождении будет уже другой ответ.</li>
+    </ul>
+    Какие кейсы пытался покрыть:
+    <ul>
+        <li> Управление отображение капчи по условию (получилось)</li>
+        <li> Получить callback при успешном прохождении капчи и выполнении логики (получилось)</li>
+        <li> Скрытие капчи и её reset для последующего использования (получилось)</li>
+    </ul>
+    </p>
+</div>
+<div><a href="/rec2-invisible.html">reCAPTCHA v2 Invisible</a></div>
+<div><a href="/rec2-invisible-manual.html">reCAPTCHA v2 Invisible manual</a></div>
+</body>
+</html>
