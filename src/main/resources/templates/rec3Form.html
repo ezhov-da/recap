@@ -1,0 +1,61 @@
+<html lang="ru">
+<meta charset="UTF-8">
+<head>
+    <title>Auth</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
+<body>
+
+<div class="container">
+    <section class="section">
+        <div class="column">
+            <button id="buttonShowFirstRec3" class="button is-info">Форма ввода (reCAPTCHA3)</button>
+        </div>
+
+        <div class="modal" id="modalButtonShowFirstRec3">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <nav class="panel">
+                    <p class="panel-heading">
+                        Первая форма ввода
+                    </p>
+
+                    <div class="notification">
+                        <form method="post" action="">
+                            <div class="field">
+                                <label class="label">Введите телефон</label>
+                                <div class="control">
+                                    <input class="input" type="text" placeholder="Телефон"
+                                           name="phone">
+                                </div>
+                            </div>
+                            <div class="field is-grouped">
+                                <button id="getCodeButtonId" class="button is-link">Получить код</button>
+                            </div>
+                            <div id="rec3InfoId" class="block"></div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    </section>
+
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+<script th:src=${googleLink} async defer>
+</script>
+
+<script th:inline="javascript">
+    var rec3Key = [[${rec3Key}]]
+</script>
+
+<script src="/js.js"></script>
+
+</body>
+</html>

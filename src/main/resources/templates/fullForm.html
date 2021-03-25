@@ -1,0 +1,102 @@
+<html lang="ru">
+<meta charset="UTF-8">
+<head>
+    <title>Auth</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
+<body>
+
+<div class="container">
+    <section class="section">
+        <div class="column"><button id="buttonShowFirst" class="button is-info">Форма ввода (невидимая reCAPTCHA2)</button></div>
+        <div class="column"><button id="buttonChangeNumber" class="button is-info">Форма изменения номера телефона (checkbox reCAPTCHA2)</button></div>
+
+        <div class="modal" id="modalButtonShowFirst">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <nav class="panel">
+                    <p class="panel-heading">
+                        Первая форма ввода
+                    </p>
+
+                    <div id="firstBaseAuth" class="notification">
+                        <form id="firstBaseAuthForm" method="post" action="">
+                            <div class="field">
+                                <label class="label">Введите телефон</label>
+                                <div class="control">
+                                    <input id="firstInputPhone" class="input" type="text" placeholder="Телефон"
+                                           name="phone">
+                                </div>
+                            </div>
+                            <div class="g-recaptcha"
+                                 th:data-sitekey="${rec2InvisibleKey}"
+                                 data-callback="onSubmitInvisibleReCapFirst"
+                                 data-size="invisible">
+                            </div>
+                            <div class="field is-grouped">
+                                <button id="firstGetCodeButton" class="button is-link">Получить код</button>
+                            </div>
+                            <div id="firstBaseAuthInfoId" class="block"></div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
+        <div class="modal" id="modalButtonChangeNumber">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <nav class="panel">
+                    <p class="panel-heading">
+                        Форма изменения номера телефона
+                    </p>
+                    <div id="repeatPhoneAuth" class="notification">
+                        <form>
+                            <div class="field">
+                                <label class="label">Введите телефон</label>
+                                <div class="control">
+                                    <input id="changeInputPhone" class="input" type="text" placeholder="Телефон">
+                                </div>
+                            </div>
+                            <div id="recapcha2ChangePhone"></div>
+                            <div class="field is-grouped">
+                                <button id="changePhoneGetCodeButton" class="button is-link">Получить код</button>
+                            </div>
+                            <div id="changePhoneInfoId" class="block"></div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    </section>
+
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+<script th:inline="javascript">
+    var recaptchaCheckBoxId
+
+    var onloadCallback = function () {
+        recaptchaCheckBoxId = grecaptcha.render('recapcha2ChangePhone', {
+            'sitekey': [[${rec2CheckboxKey}]],
+            'callback': onSubmitReCaptchaChangePhone,
+            'theme': 'lite'
+        });
+    };
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback"
+        async defer>
+</script>
+
+<script src="/js.js"></script>
+
+</body>
+</html>
